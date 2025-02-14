@@ -1,0 +1,60 @@
+# Terraform
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+.terraform/
+.terraform.lock.hcl
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+.terraform.d/
+
+# Git
+*.log
+*.lock
+*.swp
+*.swo
+*.DS_Store
+*.bak
+*.tmp
+*.orig
+*.rej
+*.un~
+*.patch
+*.diff
+*.sublime-project
+*.sublime-workspace
+*.vscode/
+.idea/
+*.iml
+
+# Bash
+*.sh~
+*.sh.swp
+*.sh.swo
+
+# Cloud-init
+*.cloud-init.log
+*.cloud-init-output.log
+
+# Python
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+__pycache__/
+*.pytest_cache/
+*.coverage
+.coverage.*
+.cache
+.tox/
+.pytest_cache/
+.mypy_cache/
