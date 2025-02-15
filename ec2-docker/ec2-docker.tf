@@ -23,25 +23,25 @@ resource "aws_instance" "tfe-fdo-docker" {
     ManagedBy   = var.ManagedBy
   }
   provisioner "file" {
-    source = "${path.module}/data/docker-compose.yaml"
+    source      = "${path.module}/data/docker-compose.yaml"
     destination = "/home/ubuntu/docker-compose.yaml"
-    
-}
-provisioner "remote-exec" {
-  inline = [ 
-    "sudo chown ubuntu:ubuntu /home/ubuntu/docker-compose.yaml",
-    "sudo chmod 644  /home/ubuntu/docker-compose.yaml",
-    "cd /home/ubuntu",
-    "until sudo systemctl is-active --quiet docker; do echo 'Waiting for Docker to be active...'; sleep 5; done",
-    "until [ -x /usr/bin/docker-compose ]; do echo 'Waiting for Docker Compose to be installed...'; sleep 5; done",
-    "sudo docker-compose up -d"
-   ]
-}
 
-connection {
-    type        = "ssh"
-    user        = "ubuntu"
-    host        = self.public_ip
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "sudo chown ubuntu:ubuntu /home/ubuntu/docker-compose.yaml",
+      "sudo chmod 644  /home/ubuntu/docker-compose.yaml",
+      "cd /home/ubuntu",
+      "until sudo systemctl is-active --quiet docker; do echo 'Waiting for Docker to be active...'; sleep 5; done",
+      "until [ -x /usr/bin/docker-compose ]; do echo 'Waiting for Docker Compose to be installed...'; sleep 5; done",
+      "sudo docker-compose up -d"
+    ]
+  }
+
+  connection {
+    type = "ssh"
+    user = "ubuntu"
+    host = self.public_ip
   }
 
 }
